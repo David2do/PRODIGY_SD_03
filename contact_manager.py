@@ -1,13 +1,7 @@
 import json
-import os
 import streamlit as st
-from pathlib import Path
 
-# Determine the local file path for storing contacts
-CONTACTS_DIR = Path.home() / ".contact_manager"
-CONTACTS_FILE = CONTACTS_DIR / "contacts.json"
-
-CONTACTS_DIR.mkdir(exist_ok=True)
+CONTACTS_FILE = "contacts.json"
 
 def load_contacts():
     try:
@@ -50,6 +44,11 @@ def delete_contact(contacts, name):
         st.error("Contact not found.")
 
 def main():
+    st.set_page_config(
+        page_title="Contact Manager App",  # Title of the web page
+        page_icon="📇",
+        layout="centered",
+    )
     st.title("Contact Manager")
 
     contacts = load_contacts()
